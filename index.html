@@ -2,39 +2,104 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Burak AI Search Engine - Multi-Protocol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burak Pro-Engine | OS & AI Integrated Search</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Yedek Stil (Eğer style.css bulunamazsa devreye girer) */
+        :root { --neon: #00ffcc; --bg: #050505; }
+        body { background: var(--bg); color: #fff; font-family: 'Consolas', monospace; margin: 0; }
+        .terminal { border: 1px solid var(--neon); margin: 20px; height: 80vh; display: flex; flex-direction: column; }
+        .output-layer { flex-grow: 1; padding: 20px; overflow-y: auto; background: rgba(0,0,0,0.8); }
+        .input-area { display: flex; background: #111; border-top: 1px solid #333; }
+        input { flex-grow: 1; background: transparent; border: none; color: var(--neon); padding: 15px; outline: none; }
+        .status-bar { padding: 5px 20px; background: var(--neon); color: #000; font-size: 12px; font-weight: bold; }
+        .log-entry { margin-bottom: 10px; border-left: 2px solid var(--neon); padding-left: 10px; }
+    </style>
 </head>
-<body>
-    <div id="app">
-        <header>
-            <h1 class="glitch-text">PRO-X ENGINE</h1>
-            <div class="search-bar">
-                <input type="text" id="addressInput" placeholder="URL girin (https://, xq://, help://)...">
-                <button onclick="Engine.process()">GİT</button>
-            </div>
-        </header>
+<body onload="initSystem()">
 
-        <main id="viewport">
-            <div id="status">Sistem Hazır.</div>
-            <div id="content-display"></div>
-        </main>
+<div class="terminal">
+    <div class="status-bar" id="sys-status">
+        SYSTEM: OFFLINE | CORE: https_help_file_root.cpp | ALIGN: pagesalign.cpp
     </div>
 
-    <script>
-        const Engine = {
-            async process() {
-                const url = document.getElementById('addressInput').value;
-                const display = document.getElementById('content-display');
-                const status = document.getElementById('status');
-                
-                status.innerText = `Bağlanılıyor: ${url}`;
-                display.innerHTML = "";
+    <div class="output-layer" id="console">
+        <div class="log-entry">>>> Burak Pro-Engine v1.0 başlatılıyor...</div>
+        <div class="log-entry">>>> main.cs servisleri kontrol ediliyor...</div>
+        <div class="log-entry">>>> AI API Anahtarı doğrulandı: sk-or-v1-3baf...</div>
+    </div>
 
-                try {
-                    if (url.startsWith('https://')) {
-                        // Gerçek internet verisi çekme (CORS izinli API'ler için)
-                        const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+    <div class="input-area">
+        <input type="text" id="commandLine" placeholder="URL veya Komut girin (https://, xq://, help://)..." onkeypress="handleKey(event)">
+        <button onclick="executeCommand()" style="padding: 10px 25px; background: var(--neon); border:none; cursor:pointer;">RUN</button>
+    </div>
+</div>
+
+<script>
+    // Sistem Başlatma (C# ve C++ simülasyonu)
+    function initSystem() {
+        const consoleLog = document.getElementById('console');
+        setTimeout(() => {
+            consoleLog.innerHTML += `<div class="log-entry">>>> [SUCCESS] pagesalign.cpp: Bellek adresleri hizalandı.</div>`;
+            consoleLog.innerHTML += `<div class="log-entry">>>> [SUCCESS] https_help_file_root.cpp: İnternet protokolleri aktif.</div>`;
+            document.getElementById('sys-status').innerText = "SYSTEM: ONLINE | ROOT: ACTIVE | AI: READY";
+            document.getElementById('sys-status').style.background = "#00ffcc";
+        }, 1500);
+    }
+
+    // Komut İşleyici
+    async function executeCommand() {
+        const cmd = document.getElementById('commandLine').value;
+        const consoleLog = document.getElementById('console');
+        
+        if (!cmd) return;
+
+        consoleLog.innerHTML += `<div class="log-entry" style="color:var(--neon)">> ${cmd}</div>`;
+        document.getElementById('commandLine').value = "";
+
+        // Protokol Kontrolü
+        if (cmd.startsWith('https://')) {
+            consoleLog.innerHTML += `<div class="log-entry">>>> İnternet verisi çekiliyor (main.cs üzerinden)...</div>`;
+            try {
+                // Gerçek veri çekme işlemi
+                const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(cmd)}`);
+                const data = await res.json();
+                consoleLog.innerHTML += `<div class="log-entry" style="font-size:11px; color:#aaa;">${data.contents.substring(0, 300)}...</div>`;
+            } catch(e) {
+                consoleLog.innerHTML += `<div class="log-entry" style="color:red">>>> HATA: Veri çekilemedi.</div>`;
+            }
+        } 
+        else if (cmd.startsWith('xq://')) {
+            consoleLog.innerHTML += `<div class="log-entry">>>> [XQ-ENGINE] Veri paketi çözülüyor (makine dili)...</div>`;
+        }
+        else if (cmd === 'help://burakhelpssq.xqom') {
+            consoleLog.innerHTML += `<div class="log-entry" style="background:#222; padding:10px;">
+                <b>BURAK YARDIM MERKEZİ</b><br>
+                - OS Yapımcısı: Burak<br>
+                - Modüller: main.cs, search.cpp, pagesalign.cpp<br>
+                - AI Status: DeepSeek-V1 Connected
+            </div>`;
+        }
+        else if (cmd === 'ai-mode') {
+            consoleLog.innerHTML += `<div class="log-entry">>>> DeepSeek AI ile bağlantı kuruluyor...</div>`;
+        }
+        else {
+            consoleLog.innerHTML += `<div class="log-entry" style="color:yellow">>>> Bilinmeyen komut veya yerel dosya yolu (file://).</div>`;
+        }
+
+        // Konsolu otomatik aşağı kaydır
+        consoleLog.scrollTop = consoleLog.scrollHeight;
+    }
+
+    function handleKey(e) {
+        if (e.key === 'Enter') executeCommand();
+    }
+</script>
+
+</body>
+</html>
+const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
                         const data = await response.json();
                         display.innerText = data.contents;
                     } 
