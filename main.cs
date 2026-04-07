@@ -1,19 +1,24 @@
+using Microsoft.Win32;
 using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 
-class Program {
-    private static readonly string apiKey = "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";
-
-    static async Task Main(string[] args) {
-        Console.WriteLine("AI Search Service Started...");
-        // AI Sorgu örneği
-        await CallAI("Merhaba, bugün hava nasıl?");
-    }
-
-    static async Task CallAI(string prompt) {
-        using var client = new HttpClient();
-        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
-        // DeepSeek API Request logic here
+class ProtocolRegister {
+    public static void RegisterXQ() {
+        try {
+            // xq:// protokolünü sisteme tanıtır
+            RegistryKey key = Registry.ClassesRoot.CreateSubKey("xq");
+            key.SetValue("", "URL:XQ Protocol");
+            key.SetValue("URL Protocol", "");
+            
+            RegistryKey shell = key.CreateSubKey("shell");
+            RegistryKey open = shell.CreateSubKey("open");
+            RegistryKey command = open.CreateSubKey("command");
+            
+            // BurakSearch.exe senin derlediğin main.cpp veya main.cs çıktısı olmalı
+            command.SetValue("", "\"C:\\BurakSearch\\main.exe\" \"%1\"");
+            
+            Console.WriteLine("XQ ve Help protokolleri sisteme kaydedildi.");
+        } catch (Exception e) {
+            Console.WriteLine("Hata: Yönetici yetkisi gerekebilir. " + e.Message);
+        }
     }
 }
