@@ -1,0 +1,4 @@
+body { background: #050505; color: #00ffcc; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+.search-container { text-align: center; border: 1px solid #333; padding: 50px; border-radius: 20px; box-shadow: 0 0 20px #00ffcc44; }
+input { background: #111; border: 1px solid #00ffcc; color: white; padding: 15px; width: 300px; border-radius: 5px; }
+button { padding: 15px 30px; background: #00ffcc; color: #000; border: none; cursor: pointer; font-weight: bold; }
