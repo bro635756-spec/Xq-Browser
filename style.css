@@ -1,32 +1,25 @@
-:root {
-    --xq-neon: #00ffcc;
-    --bg-dark: #050505;
-}
-
+/* style.css */
 body {
-    background: var(--bg-dark);
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.glitch-text {
-    color: var(--xq-neon);
-    text-shadow: 2px 2px #ff0055;
-    letter-spacing: 5px;
-    text-align: center;
+    background: radial-gradient(circle, #0a0a0a 0%, #000000 100%);
+    color: #00ffcc;
+    font-family: 'Fira Code', monospace;
+    margin: 0;
 }
 
 #viewport {
-    border: 2px solid #333;
-    height: 400px;
-    margin: 20px;
-    padding: 15px;
-    background: #000;
-    overflow-y: scroll;
+    border: 1px solid #00ffcc55;
+    background: rgba(10, 10, 10, 0.9);
+    box-shadow: inset 0 0 20px #00ffcc22;
+    padding: 20px;
 }
 
-.xq-box {
-    border-left: 5px solid var(--xq-neon);
-    padding: 10px;
-    background: #111;
+.xq-link {
+    color: #ff00ff;
+    text-decoration: underline;
+    cursor: help;
+}
+
+.status-active {
+    color: #0f0;
+    text-shadow: 0 0 5px #0f0;
 }
