@@ -1,4 +1,32 @@
-body { background: #050505; color: #00ffcc; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-.search-container { text-align: center; border: 1px solid #333; padding: 50px; border-radius: 20px; box-shadow: 0 0 20px #00ffcc44; }
-input { background: #111; border: 1px solid #00ffcc; color: white; padding: 15px; width: 300px; border-radius: 5px; }
-button { padding: 15px 30px; background: #00ffcc; color: #000; border: none; cursor: pointer; font-weight: bold; }
+:root {
+    --xq-neon: #00ffcc;
+    --bg-dark: #050505;
+}
+
+body {
+    background: var(--bg-dark);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.glitch-text {
+    color: var(--xq-neon);
+    text-shadow: 2px 2px #ff0055;
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+#viewport {
+    border: 2px solid #333;
+    height: 400px;
+    margin: 20px;
+    padding: 15px;
+    background: #000;
+    overflow-y: scroll;
+}
+
+.xq-box {
+    border-left: 5px solid var(--xq-neon);
+    padding: 10px;
+    background: #111;
+}
